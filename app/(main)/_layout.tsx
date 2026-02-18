@@ -1,8 +1,9 @@
-import { useAuth } from '@clerk/clerk-expo'
+import { Stack } from 'expo-router'
 import { Redirect } from 'expo-router'
+import { useAuth } from '@clerk/clerk-expo'
 import { ActivityIndicator, View } from 'react-native'
 
-export default function Page() {
+export default function MainLayout() {
   const { isLoaded, isSignedIn } = useAuth()
 
   if (!isLoaded) {
@@ -13,9 +14,9 @@ export default function Page() {
     )
   }
 
-  if (isSignedIn) {
-    return <Redirect href="/(main)/(home)" />
+  if (!isSignedIn) {
+    return <Redirect href="/login" />
   }
 
-  return <Redirect href="/login" />
+  return <Stack screenOptions={{ headerShown: false }} />
 }
