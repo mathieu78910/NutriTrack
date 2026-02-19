@@ -77,16 +77,15 @@ export default function Page() {
   if (pendingVerification) {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>
-          Verify your email
-        </Text>
-        <Text style={styles.description}>
-          A verification code has been sent to your email.
-        </Text>
+        <View style={styles.header}>
+          <Text style={styles.brand}>NutriTrack</Text>
+          <Text style={styles.title}>Vérifie ton email</Text>
+        </View>
+        <Text style={styles.description}>Un code de vérification a été envoyé à ton adresse email.</Text>
         <TextInput
           style={styles.input}
           value={code}
-          placeholder="Enter your verification code"
+          placeholder="Code de vérification"
           placeholderTextColor="#666666"
           onChangeText={(code) => setCode(code)}
           keyboardType="numeric"
@@ -95,7 +94,7 @@ export default function Page() {
           style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
           onPress={onVerifyPress}
         >
-          <Text style={styles.buttonText}>Verify</Text>
+          <Text style={styles.buttonText}>Valider</Text>
         </Pressable>
       </View>
     )
@@ -103,24 +102,25 @@ export default function Page() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>
-        Sign up
-      </Text>
-      <Text style={styles.label}>Email address</Text>
+      <View style={styles.header}>
+        <Text style={styles.brand}>NutriTrack</Text>
+        <Text style={styles.title}>Créer un compte</Text>
+      </View>
+      <Text style={styles.label}>Adresse email</Text>
       <TextInput
         style={styles.input}
         autoCapitalize="none"
         value={emailAddress}
-        placeholder="Enter email"
+        placeholder="Ton email"
         placeholderTextColor="#666666"
         onChangeText={(email) => setEmailAddress(email)}
         keyboardType="email-address"
       />
-      <Text style={styles.label}>Password</Text>
+      <Text style={styles.label}>Mot de passe</Text>
       <TextInput
         style={styles.input}
         value={password}
-        placeholder="Enter password"
+        placeholder="Ton mot de passe"
         placeholderTextColor="#666666"
         secureTextEntry={true}
         onChangeText={(password) => setPassword(password)}
@@ -134,12 +134,12 @@ export default function Page() {
         onPress={onSignUpPress}
         disabled={!emailAddress || !password}
       >
-        <Text style={styles.buttonText}>Continue</Text>
+        <Text style={styles.buttonText}>Continuer</Text>
       </Pressable>
       <View style={styles.linkContainer}>
-        <Text>Have an account? </Text>
+        <Text style={styles.linkText}>Tu as déjà un compte ? </Text>
         <Link href="/login">
-          <Text>Sign in</Text>
+          <Text style={styles.linkAction}>Se connecter</Text>
         </Link>
       </View>
     </View>
@@ -149,34 +149,54 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    backgroundColor: '#F4FAF6',
+    paddingHorizontal: 20,
+    paddingTop: 64,
     gap: 12,
   },
-  title: {
+  header: {
+    backgroundColor: '#1E7A43',
+    borderRadius: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
     marginBottom: 8,
+  },
+  brand: {
+    color: '#BFF4D1',
+    fontSize: 12,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 0.8,
+  },
+  title: {
+    color: '#FFFFFF',
+    fontSize: 24,
+    fontWeight: '800',
+    marginTop: 2,
   },
   description: {
     fontSize: 14,
-    marginBottom: 16,
-    opacity: 0.8,
+    marginBottom: 8,
+    color: '#496153',
   },
   label: {
     fontWeight: '600',
     fontSize: 14,
+    color: '#1D3A29',
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
+    borderColor: '#CDE2D5',
+    borderRadius: 10,
     padding: 12,
     fontSize: 16,
     backgroundColor: '#fff',
   },
   button: {
-    backgroundColor: '#0a7ea4',
+    backgroundColor: '#1E7A43',
     paddingVertical: 12,
     paddingHorizontal: 24,
-    borderRadius: 8,
+    borderRadius: 10,
     alignItems: 'center',
     marginTop: 8,
   },
@@ -188,12 +208,20 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#fff',
-    fontWeight: '600',
+    fontWeight: '700',
   },
   linkContainer: {
     flexDirection: 'row',
     gap: 4,
     marginTop: 12,
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  linkText: {
+    color: '#4F6758',
+  },
+  linkAction: {
+    color: '#1E7A43',
+    fontWeight: '700',
   },
 })
