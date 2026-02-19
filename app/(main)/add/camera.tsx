@@ -39,8 +39,10 @@ export default function CameraPage() {
 
   const handleBarcodeScanned = async ({ data }: BarcodeScanningResult) => {
     if (hasScanned || isFetching) return
+    if (!data) return
     setHasScanned(true)
-   }
+    await fetchProductByBarcode(data)
+  }
 
   console.log('[Camera] Permission:', permission?.granted)
 
