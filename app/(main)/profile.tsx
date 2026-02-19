@@ -32,14 +32,6 @@ export default function ProfilePage() {
         <Text style={styles.emailValue}>{email || 'Email indisponible'}</Text>
       </View>
 
-      <View style={styles.securityCard}>
-        <Text style={styles.cardTitle}>Sécurité</Text>
-        <Text style={styles.cardText}>Le changement se fait sur l’écran de connexion avec code email.</Text>
-        <Pressable onPress={handlePasswordResetFromLogin} style={styles.primaryAction}>
-          <Text style={styles.primaryActionText}>Modifier le mot de passe</Text>
-        </Pressable>
-        {!!securityMessage && <Text style={styles.successText}>{securityMessage}</Text>}
-      </View>
 
       <View style={styles.nutriCard}>
         <Text style={styles.cardTitle}>Repères Nutri-Score</Text>
